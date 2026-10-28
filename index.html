@@ -67,14 +67,21 @@
       </fieldset>
      </section>
 
-     <!-- PASO 2: Datos Académicos -->
+   <!-- PASO 2: Datos Académicos -->
      <section class="step" data-step="1" hidden="">
       <div>
         <label class="block font-bold text-[#143c36]" for="carrera_inst" style="font-size: 18px;">Indique su carrera y la institución donde cursa. <span class="text-red-500">*</span></label> 
-        <input id="carrera_inst" name="carrera_inst" type="text" maxlength="300" class="field-input mt-4 w-full rounded-xl px-4 py-3" autocomplete="off">
+        <select id="carrera_inst" name="carrera_inst" class="field-input mt-4 w-full rounded-xl px-4 py-3">
+          <option value="" disabled selected>Seleccione una opción...</option>
+          <option value="Profesorado de Educación Tecnológica - Colegio Superior Nº 1 de Rawson">Profesorado de Educación Tecnológica - Colegio Superior Nº 1 de Rawson</option>
+          <option value="Profesorado en Tecnologías de la Información y la Comunicación (TIC) - Instituto Superior de Formación CIICAP">Profesorado en Tecnologías de la Información y la Comunicación (TIC) - Instituto Superior de Formación CIICAP</option>
+          <option value="Profesorado de Educación Tecnológica - Instituto Superior de Formación Docente ISPE">Profesorado de Educación Tecnológica - Instituto Superior de Formación Docente ISPE</option>
+          <option value="Profesorado en Educación Tecnológica - Instituto Superior &quot;Sagrado Corazón&quot;">Profesorado en Educación Tecnológica - Instituto Superior "Sagrado Corazón"</option>
+          <option value="Profesorado en Tecnológica - Universidad Nacional de San Juan">Profesorado en Tecnológica - Universidad Nacional de San Juan</option>
+        </select>
       </div>
       <fieldset class="mt-6">
-       <legend class="font-bold text-[#143c36]" style="font-size: 18px;">¿A qué año corresponde el mayor porcentaje de materias que cursa?</legend>
+       <legend class="font-bold text-[#143c36]" style="font-size: 18px;">En caso de que estés cursando materias, ¿a qué año corresponde el mayor porcentaje?</legend>
        <div class="mt-4 grid gap-3 sm:grid-cols-2">
         <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="1º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">1º año</span></span></label>
         <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="2º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">2º año</span></span></label>
