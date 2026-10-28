@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indagación Laboratorio de Tecnología</title>
+  <title>Indagación Laboratorio de Tecnología - Estudiantes</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,700;9..144,800&amp;display=swap" rel="stylesheet">
   <style>
     :root { --ink:#143c36; --teal:#00574a; --teal-bright:#028371; --cream:#fdf8ef; }
     * { box-sizing:border-box; }
-    body { font-family:"DM Sans",sans-serif; }
+    body { font-family:"DM Sans",sans-serif; background: rgb(0, 87, 74); }
     .display-font { font-family:"Fraunces",serif; }
     .paper-noise {
       background-image:radial-gradient(circle at 14% 15%,rgba(253,248,239,.14) 0 1px,transparent 1.5px),
@@ -18,15 +18,13 @@
     .survey-card { box-shadow:0 24px 70px rgba(0,32,27,.24); animation:rise-in .55s cubic-bezier(.2,.75,.25,1) both; }
     @keyframes rise-in { from { opacity:0;transform:translateY(18px) } to { opacity:1;transform:translateY(0) } }
     .step[hidden], [hidden] { display:none !important; }
-    .field-input { border:1px solid #b9c8be;color:var(--ink);background:#fffdf8;transition:border-color .18s,box-shadow .18s; }
-    .field-input:focus { outline:none;border-color:var(--teal-bright);box-shadow:0 0 0 4px rgba(2,131,113,.12); }
-    .choice-option input { position:absolute;opacity:0;width:1px;height:1px; }
-    .choice-option input:checked + span { border-color:var(--teal-bright);background:rgba(2,131,113,.12); }
-    .choice-option input:checked + span .radio-mark { border-color:var(--teal-bright);box-shadow:inset 0 0 0 4px var(--teal-bright); }
+    .field-input { border:1px solid #b9c8be; color:var(--ink); background:#fffdf8; transition:border-color .18s,box-shadow .18s; }
+    .field-input:focus { outline:none; border-color:var(--teal-bright); box-shadow:0 0 0 4px rgba(2,131,113,.12); }
+    .choice-option input { position:absolute; opacity:0; width:1px; height:1px; }
+    .choice-option input:checked + span { border-color:var(--teal-bright); background:rgba(2,131,113,.12); }
+    .choice-option input:checked + span .radio-mark { border-color:var(--teal-bright); box-shadow:inset 0 0 0 4px var(--teal-bright); }
     .step { animation:rise-in .3s ease both; }
     .intro-copy { white-space:pre-line; }
-    
-    /* Estilos para la Matriz Likert */
     .likert-table { width: 100%; border-collapse: collapse; }
     .likert-table th, .likert-table td { padding: 12px 8px; text-align: center; }
     .likert-table tr:nth-child(even) { background-color: rgba(0, 87, 74, 0.03); }
@@ -35,80 +33,61 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
 </head>
-<body class="paper-noise min-h-screen w-full" style="background: rgb(0, 87, 74);">
+<body class="paper-noise min-h-screen w-full">
  <main class="w-full px-4 py-10 sm:px-6 sm:py-16">
   <section class="mx-auto w-full max-w-4xl">
    <div class="mb-7 flex items-center gap-3 text-[#fdf8ef]">
-    <span class="flex h-10 w-10 items-center justify-center rounded-full border border-[#fdf8ef]/30 bg-[#fdf8ef]/10" aria-hidden="true"><i data-lucide="clipboard-list" class="h-5 w-5"></i></span> 
-    <span class="font-semibold uppercase tracking-[.14em]" style="color: rgb(253, 248, 239); font-weight: 700; font-size: 14px; letter-spacing: 0.1rem;">Tu opinión cuenta</span>
+    <span class="flex h-10 w-10 items-center justify-center rounded-full border border-[#fdf8ef]/30 bg-[#fdf8ef]/10"><i data-lucide="clipboard-list" class="h-5 w-5"></i></span> 
+    <span class="font-semibold uppercase tracking-[.14em]" style="font-size: 14px;">Estudiantes - Tu opinión cuenta</span>
    </div>
    <div class="survey-card rounded-[2rem] p-6 sm:p-10 lg:p-12" style="background: rgb(253, 248, 239);">
     <header class="border-b border-[#d9e0d8] pb-7">
-     <h1 class="display-font leading-tight" style="color: rgb(20, 60, 54); font-weight: 800; font-size: 30px;">Indagación Laboratorio de tecnología</h1>
+     <h1 class="display-font leading-tight" style="color: rgb(20, 60, 54); font-weight: 800; font-size: 30px;">Indagación Laboratorio de Tecnología</h1>
     </header>
     <form id="survey-form" class="mt-7" novalidate="">
      <div class="mb-8">
       <div class="flex items-center justify-between gap-3">
-       <span class="font-semibold" style="color: rgb(0, 87, 74); font-weight: 700; font-size: 14px;">Progreso de la encuesta</span> 
-       <span id="progress-count" class="text-sm font-bold text-[#00574a]" aria-live="polite">Sección 1 de 6</span>
+       <span class="font-semibold text-[#00574a]" style="font-size: 14px;">Progreso de la encuesta</span> 
+       <span id="progress-count" class="text-sm font-bold text-[#00574a]" aria-live="polite">Sección 1 de 5</span>
       </div>
-      <div class="mt-3 h-2 overflow-hidden rounded-full bg-[#d9e0d8]" role="progressbar" id="progress-track" aria-label="Progreso de la encuesta" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1">
-       <div id="progress-fill" class="h-full rounded-full bg-[#028371] transition-all duration-300" style="width:16.6667%"></div>
+      <div class="mt-3 h-2 overflow-hidden rounded-full bg-[#d9e0d8]" role="progressbar" id="progress-track">
+       <div id="progress-fill" class="h-full rounded-full bg-[#028371] transition-all duration-300" style="width:20%"></div>
       </div>
      </div>
 
-     <!-- SECCIÓN 1 DE 6 -->
-     <section class="step" data-step="0" aria-label="Sección 1 de 6">
-      <p class="intro-copy leading-relaxed" style="color: rgb(66, 97, 89); font-weight: 400; font-size: 16px; line-height: 1.6;">Desde el Instituto de Investigaciones en Educación en las Ciencias Experimentales (IIECE), de la Facultad de Filosofía, Humanidades y Artes de la Universidad Nacional de San Juan (UNSJ), estamos llevando adelante una investigación orientada a conocer y analizar el lugar que ocupa el Laboratorio de Tecnología en los procesos de formación.
-
-En este marco, te invitamos a participar respondiendo el presente formulario. Tu experiencia, perspectiva y opiniones constituyen un aporte valioso para comprender esta temática y contribuir al fortalecimiento de las propuestas de formación en el área de Tecnología.
-
-La información proporcionada será tratada de manera confidencial y utilizada en el marco de esta investigación.
-
-Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundamental para el desarrollo de este estudio.</p>
+     <!-- PASO 1: Presentación y Consentimiento -->
+     <section class="step" data-step="0">
+      <p class="intro-copy leading-relaxed text-[#426159]" style="font-size: 16px; line-height: 1.6;">Desde el Instituto de Investigaciones en Educación en las Ciencias Experimentales (IIECE), de la Facultad de Filosofía, Humanidades y Artes de la Universidad Nacional de San Juan (UNSJ), estamos llevando adelante una investigación sobre el Laboratorio de Tecnología. Te invitamos a participar respondiendo este formulario.</p>
       <fieldset class="mt-7">
-       <legend class="font-bold" style="color: rgb(20, 60, 54); font-weight: 700; font-size: 18px;">¿Desea participar de la siguiente encuesta? <span class="text-red-500">*</span></legend>
+       <legend class="font-bold text-[#143c36]" style="font-size: 18px;">¿Desea participar de la siguiente encuesta? <span class="text-red-500">*</span></legend>
        <div class="mt-4 grid gap-3 sm:grid-cols-2">
-        <label class="choice-option relative cursor-pointer"> 
-          <input type="radio" name="participacion" value="Sí"> 
-          <span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-4"> 
-            <span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]" aria-hidden="true"></span> 
-            <span class="font-medium" style="color: rgb(20, 60, 54); font-weight: 500; font-size: 16px;">Sí</span> 
-          </span> 
-        </label> 
-        <label class="choice-option relative cursor-pointer"> 
-          <input type="radio" name="participacion" value="No"> 
-          <span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-4"> 
-            <span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]" aria-hidden="true"></span> 
-            <span class="font-medium" style="color: rgb(20, 60, 54); font-weight: 500; font-size: 16px;">No</span> 
-          </span> 
-        </label>
+        <label class="choice-option relative cursor-pointer"><input type="radio" name="participacion" value="Sí"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-4"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">Sí</span></span></label> 
+        <label class="choice-option relative cursor-pointer"><input type="radio" name="participacion" value="No"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-4"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">No</span></span></label>
        </div>
       </fieldset>
      </section>
 
-     <!-- SECCIÓN 2 DE 6 -->
-     <section class="step" data-step="1" aria-label="Sección 2 de 6" hidden="">
+     <!-- PASO 2: Datos Académicos -->
+     <section class="step" data-step="1" hidden="">
       <div>
-        <label class="block font-bold" for="carrera_inst" style="color: rgb(20, 60, 54); font-weight: 700; font-size: 18px;">Indique su carrera y la institución donde cursa. <span class="text-red-500">*</span></label> 
+        <label class="block font-bold text-[#143c36]" for="carrera_inst" style="font-size: 18px;">Indique su carrera y la institución donde cursa. <span class="text-red-500">*</span></label> 
         <input id="carrera_inst" name="carrera_inst" type="text" maxlength="300" class="field-input mt-4 w-full rounded-xl px-4 py-3" autocomplete="off">
       </div>
       <fieldset class="mt-6">
-       <legend class="font-bold" style="color: rgb(20, 60, 54); font-weight: 700; font-size: 18px;">En caso de que estés cursando materias, ¿a qué año corresponde el mayor porcentaje?</legend>
+       <legend class="font-bold text-[#143c36]" style="font-size: 18px;">¿A qué año corresponde el mayor porcentaje de materias que cursa?</legend>
        <div class="mt-4 grid gap-3 sm:grid-cols-2">
-        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="1º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]" aria-hidden="true"></span><span class="font-medium" style="color: rgb(20, 60, 54); font-weight: 500; font-size: 16px;">1º año</span></span></label>
-        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="2º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]" aria-hidden="true"></span><span class="font-medium" style="color: rgb(20, 60, 54); font-weight: 500; font-size: 16px;">2º año</span></span></label>
-        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="3º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]" aria-hidden="true"></span><span class="font-medium" style="color: rgb(20, 60, 54); font-weight: 500; font-size: 16px;">3º año</span></span></label>
-        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="4º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]" aria-hidden="true"></span><span class="font-medium" style="color: rgb(20, 60, 54); font-weight: 500; font-size: 16px;">4º año</span></span></label>
+        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="1º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">1º año</span></span></label>
+        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="2º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">2º año</span></span></label>
+        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="3º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">3º año</span></span></label>
+        <label class="choice-option relative cursor-pointer"><input type="radio" name="anio_cursado" value="4º año"><span class="flex items-center gap-3 rounded-xl border border-[#c7d2ca] px-4 py-3"><span class="radio-mark h-4 w-4 shrink-0 rounded-full border-2 border-[#9caf9f]"></span><span class="font-medium text-[#143c36]">4º año o más</span></span></label>
        </div>
       </fieldset>
      </section>
 
-     <!-- SECCIÓN 3 DE 6 -->
-     <section class="step" data-step="2" aria-label="Sección 3 de 6" hidden="">
-      <h2 class="font-bold" style="color: rgb(20, 60, 54); font-weight: 700; font-size: 18px;">Mencione 5 palabras que asocien con LABORATORIO, ordenándolas desde la que considere más importante a la menos importante. <span class="text-red-500">*</span></h2>
-      <p class="mt-2 text-sm text-[#587168]">Complete los 5 casilleros en orden de relevancia:</p>
-      <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-5">
+     <!-- PASO 3: Palabras Asociadas (Casilleros ordenados) -->
+     <section class="step" data-step="2" hidden="">
+      <h2 class="font-bold text-[#143c36]" style="font-size: 18px;">Mencione 5 palabras que asocien con LABORATORIO, ordenándolas de la más a la menos importante. <span class="text-red-500">*</span></h2>
+      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-5">
        <div><label class="mb-1 block text-center text-xs font-bold text-[#143c36]" for="lab-1">1. Más importante</label><input id="lab-1" name="lab_1" type="text" maxlength="100" class="field-input w-full rounded-xl px-3 py-2 text-center" autocomplete="off"></div>
        <div><label class="mb-1 block text-center text-xs font-bold text-[#143c36]" for="lab-2">2. Segunda</label><input id="lab-2" name="lab_2" type="text" maxlength="100" class="field-input w-full rounded-xl px-3 py-2 text-center" autocomplete="off"></div>
        <div><label class="mb-1 block text-center text-xs font-bold text-[#143c36]" for="lab-3">3. Tercera</label><input id="lab-3" name="lab_3" type="text" maxlength="100" class="field-input w-full rounded-xl px-3 py-2 text-center" autocomplete="off"></div>
@@ -117,9 +96,8 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
       </div>
 
       <div class="mt-8 pt-6 border-t border-[#d9e0d8]">
-        <h2 class="font-bold" style="color: rgb(20, 60, 54); font-weight: 700; font-size: 18px;">Mencione 5 palabras que asocien con LABORATORIO DE TECNOLOGÍA, ordenándolas desde la que considere más importante a la menos importante.</h2>
-        <p class="mt-2 text-sm text-[#587168]">Complete los 5 casilleros en orden de relevancia:</p>
-        <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-5">
+        <h2 class="font-bold text-[#143c36]" style="font-size: 18px;">Mencione 5 palabras que asocien con LABORATORIO DE TECNOLOGÍA, ordenándolas de la más a la menos importante.</h2>
+        <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-5">
          <div><label class="mb-1 block text-center text-xs font-bold text-[#143c36]" for="lab-tec-1">1. Más importante</label><input id="lab-tec-1" name="lab_tec_1" type="text" maxlength="100" class="field-input w-full rounded-xl px-3 py-2 text-center" autocomplete="off"></div>
          <div><label class="mb-1 block text-center text-xs font-bold text-[#143c36]" for="lab-tec-2">2. Segunda</label><input id="lab-tec-2" name="lab_tec_2" type="text" maxlength="100" class="field-input w-full rounded-xl px-3 py-2 text-center" autocomplete="off"></div>
          <div><label class="mb-1 block text-center text-xs font-bold text-[#143c36]" for="lab-tec-3">3. Tercera</label><input id="lab-tec-3" name="lab_tec_3" type="text" maxlength="100" class="field-input w-full rounded-xl px-3 py-2 text-center" autocomplete="off"></div>
@@ -129,25 +107,22 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
       </div>
      </section>
 
-     <!-- SECCIÓN 4 DE 6 -->
-     <section class="step" data-step="3" aria-label="Sección 4 de 6" hidden="">
+     <!-- PASO 4: Frases Incompletas -->
+     <section class="step" data-step="3" hidden="">
       <p class="font-semibold text-lg text-[#143c36] mb-4">Complete las siguientes frases, expresando lo que piense y sienta.</p>
-      
       <div class="mb-6">
-        <label class="block font-bold mb-2" for="frase-deberia" style="color: rgb(20, 60, 54); font-size: 16px;">En el laboratorio de Tecnología se debería... <span class="text-red-500">*</span></label>
+        <label class="block font-bold mb-2 text-[#143c36]" style="font-size: 16px;">En el laboratorio de Tecnología se debería... <span class="text-red-500">*</span></label>
         <input id="frase-deberia" name="frase_deberia" type="text" maxlength="300" class="field-input w-full rounded-xl px-4 py-3" autocomplete="off">
       </div>
-
       <div>
-        <label class="block font-bold mb-2" for="frase-ciencias" style="color: rgb(20, 60, 54); font-size: 16px;">El laboratorio de Tecnología se parece con el de Ciencias Naturales en... <span class="text-red-500">*</span></label>
+        <label class="block font-bold mb-2 text-[#143c36]" style="font-size: 16px;">El laboratorio de Tecnología se parece con el de Ciencias Naturales en... <span class="text-red-500">*</span></label>
         <input id="frase-ciencias" name="frase_ciencias" type="text" maxlength="300" class="field-input w-full rounded-xl px-4 py-3" autocomplete="off">
       </div>
      </section>
 
-     <!-- SECCIÓN 5 DE 6: Matriz Likert -->
-     <section class="step" data-step="4" aria-label="Sección 5 de 6" hidden="">
-      <h2 class="font-bold mb-4" style="color: rgb(20, 60, 54); font-weight: 700; font-size: 17px;">A continuación, se presentan algunas afirmaciones sobre el Laboratorio de Tecnología. Lea cada una y marque la opción que mejor refleje su opinión. <span class="text-red-500">*</span></h2>
-      
+     <!-- PASO 5: Escala Likert -->
+     <section class="step" data-step="4" hidden="">
+      <h2 class="font-bold mb-4 text-[#143c36]" style="font-size: 17px;">A continuación, se presentan algunas afirmaciones sobre el Laboratorio de Tecnología. Marque su grado de acuerdo: <span class="text-red-500">*</span></h2>
       <div class="overflow-x-auto mt-6">
         <table class="likert-table text-xs text-[#143c36]">
           <thead>
@@ -161,46 +136,11 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
             </tr>
           </thead>
           <tbody>
-            <tr class="border-b border-[#e2e8e4]">
-              <td class="text-left py-3 px-2 font-medium">El Laboratorio de Tecnología es un espacio para diseñar y construir soluciones a problemas concretos.</td>
-              <td><input type="radio" name="afirmacion_1" value="Muy de acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_1" value="De acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_1" value="Indiferente" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_1" value="En desacuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_1" value="Totalmente en desacuerdo" class="likert-radio"></td>
-            </tr>
-            <tr class="border-b border-[#e2e8e4]">
-              <td class="text-left py-3 px-2 font-medium">Las actividades de un Laboratorio de Tecnología permitirían aprender haciendo, además de estudiar conceptos teóricos.</td>
-              <td><input type="radio" name="afirmacion_2" value="Muy de acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_2" value="De acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_2" value="Indiferente" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_2" value="En desacuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_2" value="Totalmente en desacuerdo" class="likert-radio"></td>
-            </tr>
-            <tr class="border-b border-[#e2e8e4]">
-              <td class="text-left py-3 px-2 font-medium">Un Laboratorio de Tecnología ofrecería oportunidades para crear, probar y mejorar ideas mediante el uso de materiales, herramientas y recursos digitales.</td>
-              <td><input type="radio" name="afirmacion_3" value="Muy de acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_3" value="De acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_3" value="Indiferente" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_3" value="En desacuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_3" value="Totalmente en desacuerdo" class="likert-radio"></td>
-            </tr>
-            <tr class="border-b border-[#e2e8e4]">
-              <td class="text-left py-3 px-2 font-medium">Las actividades propias de un Laboratorio de Tecnología podrían desarrollarse sin necesidad de contar con un espacio específico.</td>
-              <td><input type="radio" name="afirmacion_4" value="Muy de acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_4" value="De acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_4" value="Indiferente" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_4" value="En desacuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_4" value="Totalmente en desacuerdo" class="likert-radio"></td>
-            </tr>
-            <tr class="border-b border-[#e2e8e4]">
-              <td class="text-left py-3 px-2 font-medium">La principal función de un Laboratorio de Tecnología sería aplicar conocimientos que ya fueron enseñados en clase.</td>
-              <td><input type="radio" name="afirmacion_5" value="Muy de acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_5" value="De acuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_5" value="Indiferente" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_5" value="En desacuerdo" class="likert-radio"></td>
-              <td><input type="radio" name="afirmacion_5" value="Totalmente en desacuerdo" class="likert-radio"></td>
-            </tr>
+            <tr class="border-b border-[#e2e8e4]"><td class="text-left py-3 px-2 font-medium">1. El Laboratorio de Tecnología es un espacio para desarrollar soluciones a problemas concretos.</td><td><input type="radio" name="afirmacion_1" value="Muy de acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_1" value="De acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_1" value="Indiferente" class="likert-radio"></td><td><input type="radio" name="afirmacion_1" value="En desacuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_1" value="Totalmente en desacuerdo" class="likert-radio"></td></tr>
+            <tr class="border-b border-[#e2e8e4]"><td class="text-left py-3 px-2 font-medium">2. Las actividades de un Laboratorio de Tecnología permitirían aprender haciendo.</td><td><input type="radio" name="afirmacion_2" value="Muy de acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_2" value="De acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_2" value="Indiferente" class="likert-radio"></td><td><input type="radio" name="afirmacion_2" value="En desacuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_2" value="Totalmente en desacuerdo" class="likert-radio"></td></tr>
+            <tr class="border-b border-[#e2e8e4]"><td class="text-left py-3 px-2 font-medium">3. Un Laboratorio de Tecnología ofrecería oportunidades para crear, probar y mejorar ideas.</td><td><input type="radio" name="afirmacion_3" value="Muy de acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_3" value="De acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_3" value="Indiferente" class="likert-radio"></td><td><input type="radio" name="afirmacion_3" value="En desacuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_3" value="Totalmente en desacuerdo" class="likert-radio"></td></tr>
+            <tr class="border-b border-[#e2e8e4]"><td class="text-left py-3 px-2 font-medium">4. Las actividades propias podrían desarrollarse sin necesidad de un espacio específico.</td><td><input type="radio" name="afirmacion_4" value="Muy de acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_4" value="De acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_4" value="Indiferente" class="likert-radio"></td><td><input type="radio" name="afirmacion_4" value="En desacuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_4" value="Totalmente en desacuerdo" class="likert-radio"></td></tr>
+            <tr class="border-b border-[#e2e8e4]"><td class="text-left py-3 px-2 font-medium">5. La principal función sería aplicar conocimientos que ya fueron enseñados en clase.</td><td><input type="radio" name="afirmacion_5" value="Muy de acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_5" value="De acuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_5" value="Indiferente" class="likert-radio"></td><td><input type="radio" name="afirmacion_5" value="En desacuerdo" class="likert-radio"></td><td><input type="radio" name="afirmacion_5" value="Totalmente en desacuerdo" class="likert-radio"></td></tr>
           </tbody>
         </table>
       </div>
@@ -219,16 +159,14 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
     <section id="farewell-panel" class="py-8 text-center" aria-live="polite" hidden="">
      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#d9f0e8] text-[#00574a]" aria-hidden="true"><i data-lucide="heart" class="h-8 w-8"></i></div>
      <h2 class="display-font mt-6" style="color: rgb(20, 60, 54); font-weight: 800; font-size: 24px;">Gracias por tu tiempo</h2>
-     <p class="mx-auto mt-3 max-w-lg leading-relaxed" style="color: rgb(66, 97, 89); font-weight: 400; font-size: 17px; line-height: 1.5;">Respetamos tu decisión de no participar. Te agradecemos por considerar esta invitación.</p>
      <button id="farewell-restart" type="button" class="mt-7 rounded-full px-6 py-3 font-bold" style="background: rgb(0, 87, 74); color: rgb(255, 255, 255); font-weight: 700; font-size: 16px;">Volver al inicio</button>
     </section>
 
-    <!-- SECCIÓN 6 DE 6: Confirmación Final -->
     <section id="success-panel" class="py-8 text-center" aria-live="polite" hidden="">
      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#d9f0e8] text-[#00574a]" aria-hidden="true"><i data-lucide="check" class="h-9 w-9"></i></div>
      <h2 class="display-font mt-6" style="color: rgb(20, 60, 54); font-weight: 800; font-size: 24px;">Gracias por tu participación</h2>
      <p class="mx-auto mt-3 max-w-lg leading-relaxed text-[#426159] text-base">Muchas gracias por tu tiempo y participación en esta investigación.</p>
-     <p class="mx-auto mt-4 max-w-lg text-sm text-[#587168]">Si tenés alguna duda o consulta, podés comunicarte con nosotros a través del correo electrónico:<br><a href="mailto:svalverde@ffha.unsj.edu.ar" class="font-semibold underline text-[#00574a]">svalverde@ffha.unsj.edu.ar</a></p>
+     <p class="mx-auto mt-4 max-w-lg text-sm text-[#587168]">Ante cualquier consulta, podés comunicarte a: <a href="mailto:svalverde@ffha.unsj.edu.ar" class="font-semibold underline text-[#00574a]">svalverde@ffha.unsj.edu.ar</a></p>
      <button id="new-response-button" type="button" class="mt-7 rounded-full px-6 py-3 font-bold" style="background: rgb(0, 87, 74); color: rgb(255, 255, 255); font-weight: 700; font-size: 16px;">Enviar otra respuesta</button>
     </section>
    </div>
@@ -236,9 +174,7 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
  </main>
 
  <script>
-    // ⚙️ PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygk5JXDrTlYo7aaQQPkUsOM8FKf64V9oFHUBMbf5QHgMs2-Sh6OSvcCLcfziVS6XB0qg/exec';
-
+    const SCRIPT_URL = 'PEGAR_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT_ALUMNOS';
     const form = document.getElementById('survey-form');
     const steps = [...document.querySelectorAll('.step')];
     const message = document.getElementById('form-message');
@@ -253,22 +189,17 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
       message.style.color = '#792c1e';
       message.hidden = false;
     }
-    function clearMessage() {
-      message.hidden = true;
-      message.textContent = '';
-    }
+    function clearMessage() { message.hidden = true; message.textContent = ''; }
     function showStep(index) {
       currentStep = index;
       steps.forEach((step, i) => { step.hidden = i !== index; });
       document.getElementById('progress-count').textContent = `Sección ${index + 1} de 5`;
       document.getElementById('progress-fill').style.width = `${((index + 1) / 5) * 100}%`;
-      document.getElementById('progress-track').setAttribute('aria-valuenow', String(index + 1));
       backButton.hidden = index === 0;
       nextButton.hidden = index === 4;
       submitButton.hidden = index !== 4;
       clearMessage();
     }
-
     function responseData(participation) {
       return {
         participacion: participation,
@@ -293,95 +224,36 @@ Agradecemos tu tiempo y disposición para participar. Tu colaboración es fundam
         afirmacion_5: form.elements.afirmacion_5.value || ''
       };
     }
-
-    function restart() {
-      form.reset();
-      document.getElementById('success-panel').hidden = true;
-      document.getElementById('farewell-panel').hidden = true;
-      form.hidden = false;
-      showStep(0);
-      form.querySelector('input[name="participacion"]').focus();
-    }
-
+    function restart() { form.reset(); document.getElementById('success-panel').hidden = true; document.getElementById('farewell-panel').hidden = true; form.hidden = false; showStep(0); }
     async function sendData(dataObj) {
       try {
-        await fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dataObj)
-        });
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObj) });
         return { isOk: true };
-      } catch (err) {
-        console.error(err);
-        return { isOk: false };
-      }
+      } catch (err) { return { isOk: false }; }
     }
-
     nextButton.addEventListener('click', async () => {
       clearMessage();
-      if (currentStep === 0) {
-        const participation = form.elements.participacion.value;
-        if (!participation) {
-          showMessage('Selecciona Sí o No para continuar.');
-          return;
-        }
-        if (participation === 'No') {
-          nextButton.disabled = true;
-          await sendData({ participacion:'No' });
-          nextButton.disabled = false;
-          form.hidden = true;
-          document.getElementById('farewell-panel').hidden = false;
-          return;
-        }
-      }
-      if (currentStep === 1 && !form.elements.carrera_inst.value.trim()) {
-        showMessage('Por favor indica tu carrera e institución.');
+      if (currentStep === 0 && form.elements.participacion.value === 'No') {
+        await sendData({ participacion:'No' });
+        form.hidden = true; document.getElementById('farewell-panel').hidden = false;
         return;
       }
-      if (currentStep === 2 && !form.elements.lab_1.value.trim()) {
-        showMessage('Ingresa al menos la primera palabra para continuar.');
-        return;
-      }
-      if (currentStep === 3 && (!form.elements.frase_deberia.value.trim() || !form.elements.frase_ciencias.value.trim())) {
-        showMessage('Por favor completa ambas frases para continuar.');
-        return;
-      }
+      if (currentStep === 1 && !form.elements.carrera_inst.value.trim()) { showMessage('Complete su carrera e institución.'); return; }
       if (currentStep < 4) showStep(currentStep + 1);
     });
-
-    backButton.addEventListener('click', () => {
-      if (currentStep > 0) showStep(currentStep - 1);
-    });
-
+    backButton.addEventListener('click', () => { if (currentStep > 0) showStep(currentStep - 1); });
     form.addEventListener('submit', async event => {
       event.preventDefault();
       if (currentStep !== 4) return;
       clearMessage();
-      
-      // Validación de la matriz Likert
-      if (!form.elements.afirmacion_1.value || !form.elements.afirmacion_2.value || 
-          !form.elements.afirmacion_3.value || !form.elements.afirmacion_4.value || 
-          !form.elements.afirmacion_5.value) {
-        showMessage('Por favor responde todas las afirmaciones marcando tu grado de acuerdo.');
-        return;
-      }
-
       submitButton.disabled = true;
       const result = await sendData(responseData('Sí'));
       submitButton.disabled = false;
-      
-      if (!result.isOk) {
-        showMessage('No pudimos guardar tu respuesta. Revisa tu conexión e inténtalo nuevamente.');
-        return;
-      }
-      form.hidden = true;
-      document.getElementById('success-panel').hidden = false;
+      if (!result.isOk) { showMessage('Error al guardar. Verifique su conexión.'); return; }
+      form.hidden = true; document.getElementById('success-panel').hidden = false;
     });
-
     document.getElementById('new-response-button').addEventListener('click', restart);
     document.getElementById('farewell-restart').addEventListener('click', restart);
-
     showStep(0);
     lucide.createIcons();
   </script>
